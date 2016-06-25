@@ -2,7 +2,7 @@
   "name": "storageapi-editor",
   "version": "1.0.2",
   "description": "Editor for StorageAPI",
-  "main": "Editor.vue",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
