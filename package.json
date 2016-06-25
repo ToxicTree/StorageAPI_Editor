@@ -1,0 +1,26 @@
+{
+  "name": "storageapi-editor",
+  "version": "1.0.0",
+  "description": "Editor for StorageAPI",
+  "main": "Editor.vue",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ToxicTree/StorageAPI_Editor.git"
+  },
+  "author": "Jonathan (https://github.com/ToxicTree)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ToxicTree/StorageAPI_Editor/issues"
+  },
+  "homepage": "https://github.com/ToxicTree/StorageAPI_Editor#readme",
+  "dependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "vue": "^1.0.25",
+    "vue-hot-reload-api": "^2.0.3",
+    "vueify": "^8.6.0"
+  }
+}
