@@ -136,7 +136,7 @@
                     content += " <td>Tools:</td>";
                     content += " <td>";
                     content += "  <a href='"+this.$root.nav+"' data-path='/'>Cancel</a>";
-                    content += "  <a href='"+this.$root.nav+"' data-path='"+this.apiPath.substring(0,this.apiPath.lastIndexOf('/'))+"' data-method='PUT'>Save</a>";
+                    content += "  <a href='"+this.$root.nav+"' data-path='/"+this.table+"' data-table='"+this.table+"' data-method='PUT'>Save</a>";
                     content += " </td>";
                     content += "</tr>";
                     
