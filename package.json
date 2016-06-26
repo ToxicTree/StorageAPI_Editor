@@ -1,6 +1,6 @@
 {
   "name": "storageapi-editor",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Editor for StorageAPI",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,12 @@
   "browserify": {
     "transform": [
       [
-        "babelify", { "presets": ["es2015"] }
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
       ],
       [
         "vueify",
