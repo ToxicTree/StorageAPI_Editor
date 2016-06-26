@@ -1,8 +1,8 @@
 # StorageAPI_Editor
-Editor for StorageAPI
+Editor for [StorageAPI](https://github.com/ToxicTree/StorageAPI)
 
 #### About
-Experimental vue component & node-module that can be added to my VueInterface.
+Experimental vue component & node-module.
 
 #### Install to folder
     git clone https://github.com/ToxicTree/StorageAPI_Editor.git
@@ -10,10 +10,10 @@ Experimental vue component & node-module that can be added to my VueInterface.
     npm install
 
 #### Install to project
-    npm install storageapi-editor
+    npm install storageapi-editor --save
    
 #### Use
-    var Editor = require('../StorageAPI_Editor') // From cloned folder
+    var Editor = require('../StorageAPI_Editor') // From cloned repo folder
     
     var Editor = require('storageapi-editor') // From installed npm-package
     
@@ -27,6 +27,28 @@ Experimental vue component & node-module that can be added to my VueInterface.
     exports.Editor = require('storageapi-editor')
 
 #### Problems?
-    Give up and copy contents of source, then paste it into a new file in project...
+I was having alot of problems when trying to require this from node_modules and from repo-folder using the same browserify-setup.
+    
+If you are using gulp, browserify & laravel-elixir to bundle your project:
+    
+make sure that you don´t require laravel-elixir-vueify in your .gulpfile and add vueify to your package.json instead:
+    
+    "dependencies": {
+        "gulp": "^3.9.1",
+        "laravel-elixir": "5.0.0",
+        "laravel-elixir-vueify": "^1.0.3",
+        "storageapi-editor": "^1.0.0"
+    },
+    "browserify": {
+        "transform": [
+            [
+                "babelify", { "presets": ["es2015"] }
+            ],
+            [
+                "vueify",
+                {}
+            ]
+        ]
+    }
 
-    I´m using laravel-elixir & laravel-elixir-vueify to bundle .vue files.
+See [VueInterface](https://github.com/ToxicTree/VueInterface) for a example.
