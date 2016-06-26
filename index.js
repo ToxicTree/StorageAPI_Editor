@@ -1,1 +1,1 @@
-module.exports = require('./Editor.vue')
+//module.exports = require('Editor.vue')
