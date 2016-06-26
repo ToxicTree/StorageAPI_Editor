@@ -1,1 +1,3 @@
-module.exports = require('./Editor.vue')
+import Editor from './Editor.vue'
+module.exports = Editor
+//module.exports = require('./Editor.vue')
