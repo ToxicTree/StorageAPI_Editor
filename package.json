@@ -1,6 +1,6 @@
 {
   "name": "storageapi-editor",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Editor for StorageAPI",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,8 @@
   "browserify": {
     "transform": [
       [
-        "vueify", {}
+        "vueify",
+        {}
       ]
     ]
   }
