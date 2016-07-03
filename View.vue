@@ -68,9 +68,10 @@
 
 <script>
     export default {
+
         props: [ 'table', 'row' ],
+
         methods: {
-            debug(object){console.log(object)},
             click(e){
                 this.$parent.navigate(
                     e.target.getAttribute('data-path'),
@@ -81,5 +82,6 @@
                 );
             }
         }
+
     }
 </script>

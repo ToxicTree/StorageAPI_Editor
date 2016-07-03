@@ -2,7 +2,6 @@
 
     <form class="form-horizontal" id="editor">
 
-
         <template v-if="$parent.table && $parent.row">
 
             <div v-for="(index, value) in $parent.data[0]" class="form-group">
@@ -93,22 +92,25 @@
 
 <script>
     export default {
+
         props: [ 'table', 'row' ],
+
         data(){
             return {
                 types: [ 'INTEGER', 'TEXT' ]
             }
         },
+
         methods: {
-            submit(){
-                return true;
-            },
+
             remove(i){
                 this.$parent.data[0].columns.splice(i,1);
             },
+
             add(){
                 this.$parent.data[0].columns.push({fresh:true});
             },
+
             click(e){
                 this.$parent.navigate(
                     e.target.getAttribute('data-path'),
@@ -118,7 +120,9 @@
                     e.target.getAttribute('data-row')
                 );
             }
+
         }
+
     }
 </script>
 

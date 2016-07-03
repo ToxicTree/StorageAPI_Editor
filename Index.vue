@@ -1,8 +1,13 @@
 <template>
+
     <status></status>
+
     <api-nav></api-nav>
+
     <view :table="table" :row="row" v-if="!loading && !editMode"></view>
+
     <editor :table="table" :row="row" v-if="!loading && editMode"></editor>
+
 </template>
 
 <script>
@@ -12,12 +17,9 @@
     import View from './View.vue'
 
     export default {
-        components: {
-            Status,
-            ApiNav,
-            Editor,
-            View
-        },
+
+        components: { Status, ApiNav, Editor, View },
+
         data() {
             return {
                 data: '',
@@ -35,7 +37,9 @@
         },
 
         methods: {
+
             navigate(apiPath, apiMethod, editMode, table, row) {
+                
                 if (!apiPath)
                     return;
 
@@ -46,22 +50,27 @@
                 this.editMode = (editMode) ? editMode : '';
 
                 this.table = table;
+
                 this.row = row;
 
                 this.ajax(this.handleResponse,this.data[0]);
 
                 this.$broadcast('nav-update', apiPath, table, row);
+
             },
+
             handleResponse(data){
-                var self = this;
 
                 this.data = data;
 
                 this.$broadcast('refresh-contents');
 
                 this.loading = false;
+
             },
+
             ajax(cb,data){
+
                 var self = this;
                 
                 // Make a request
@@ -83,17 +92,15 @@
                         self.$broadcast('status-update', "Error from '"+self.apiDomain+"'. "+code);
                     }
                 });
+
             }
+
         },
+
         ready(){
-            this.navigate(
-                this.apiPath,
-                'GET',
-                '',
-                '',
-                0
-            );
+            this.navigate( this.apiPath );
         }
+
     }
 </script>
 
