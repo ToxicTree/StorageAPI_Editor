@@ -1,2 +1,2 @@
-import EditorModule from './Module.vue'
+import EditorModule from './Index.vue'
 module.exports = EditorModule
