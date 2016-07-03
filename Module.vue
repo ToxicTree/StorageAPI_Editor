@@ -1,8 +1,8 @@
 <template>
     <status></status>
     <api-nav></api-nav>
-    <view :table="table" :row="row" v-if="!editMode"></view>
-    <editor :table="table" :row="row" v-if="editMode"></editor>
+    <view :table="table" :row="row" v-if="!loading && !editMode"></view>
+    <editor :table="table" :row="row" v-if="!loading && editMode"></editor>
 </template>
 
 <script>
@@ -21,7 +21,8 @@
         data() {
             return {
                 data: '',
-                
+                loading: false,
+
                 editMode: '',
 
                 table: '',
@@ -57,12 +58,15 @@
                 this.data = data;
 
                 this.$broadcast('refresh-contents');
+
+                this.loading = false;
             },
             ajax(cb,data){
                 var self = this;
                 
                 // Make a request
                 self.$broadcast('status-update', "Connecting to storage @ '"+self.apiDomain+"' ...");
+                self.loading = true;
                 
                 $.ajax({
                     url: self.apiDomain+self.apiPath,

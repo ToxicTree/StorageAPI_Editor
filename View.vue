@@ -1,18 +1,27 @@
 <template>
 
     <table class="table" v-if="!table && !row">
-        <tr><th>Table</th><th>Columns</th><th>Tools</th></tr>
+        <tr><th>Table</th><th>Columns</th><th class="text-right">Tools</th></tr>
         <tr v-for="object in $parent.data">
             <td><a @click="click" href='{{$root.nav}}' data-path='/{{object.tablename}}' data-table='{{object.tablename}}'>{{object.tablename}}</a></td>
-            <td><span v-for="column in object.columns">{{column.name}}</span></td>
+            <td><span v-for="(index, column) in object.columns">{{ (index>0) ? ', '+column.name : column.name }}</span></td>
             <td>
-                <a @click="click" href='{{$root.nav}}' data-path='/{{object.tablename}}' data-table='{{object.tablename}}' data-mode='edit'>Edit</a>
+                <button @click="click" type="button" class="btn pull-right" data-path='/{{object.tablename}}'
+                        data-table='{{object.tablename}}' data-mode='edit'>Edit</button>
+                <button @click="click" type="button" class="btn pull-right" data-path='/{{object.tablename}}'
+                        data-method='DELETE'>Kill</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button @click="click" type="button" class="btn pull-right" data-path='/'
+                    data-method='post' data-mode='edit'>New</button>
             </td>
         </tr>
     </table>
 
     <table class="table" v-if="table && !row">
-        <tr><th v-for="column in $parent.data[0].columns">{{column.name}}</th><th>Tools</th></tr>
+        <tr><th v-for="column in $parent.data[0].columns">{{column.name}}</th><th class="text-right">Tools</th></tr>
         <tr v-for="object in $parent.data[0].data">
             <td v-for="(index, value) in object">
                 <a @click="click" v-if="index=='id'" href='{{$root.nav}}' data-path='/{{table}}/{{object.id}}'
@@ -20,15 +29,22 @@
                 <p v-else>{{value}}</p>
             </td>
             <td>
-                <a @click="click" href='{{$root.nav}}' data-path='/{{table}}/{{object.id}}'
-                   data-table='{{table}}' data-method='DELETE'>KILL</a>
-                <a @click="click" href='{{$root.nav}}' data-path='/{{table}}/{{object.id}}'
-                   data-table='{{table}}' data-row='{{object.id}}' data-mode='edit'>EDIT</a>
+                <button @click="click" type="button" class="btn pull-right" data-path='/{{table}}/{{object.id}}'
+                        data-table='{{table}}' data-row='{{object.id}}' data-mode='edit'>Edit</button>
+                <button @click="click" type="button" class="btn pull-right" data-path='/{{table}}/{{object.id}}'
+                        data-table='{{table}}' data-method='DELETE'>Kill</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="{{$parent.data[0].columns.length+1}}">
+                <button @click="click" type="button" class="btn pull-right" data-path='/{{table}}'
+                        data-table='{{table}}' data-row='0' data-method='post' data-mode='edit'>New</button>
             </td>
         </tr>
     </table>
 
     <table class="table" v-if="table && row">
+        <tr><th>Column</th><th>Value</th></tr>
         <tr v-for="(index, value) in $parent.data[0]">
             <td>{{index}}</td>
             <td>{{value}}</td>

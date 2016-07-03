@@ -7,15 +7,15 @@
 
             <div v-for="(index, value) in $parent.data[0]" class="form-group">
                 <label class="col-sm-offset-1 col-sm-2 control-label" for="{{index}}">{{index}}</label>
-                <div class="col-sm-7"><input class="form-control" name="{{index}}" v-model="value"></div>
+                <div class="col-sm-7"><input class="form-control" name="{{index}}" v-model="value" :disabled="index=='id'"></div>
             </div>
-            <div class="form-group">
+            <div class="form-group" v-if="$parent.data[0].id">
                 <div class="col-sm-offset-3 col-sm-7" id="actions">
-                    <button type="button" class="btn" @click="click" data-path='/{{table}}/{{row}}'
-                            data-table='{{table}}' data-row={{row}} data-mode=''>Cancel</button>
+                    <button type="button" class="btn" @click="click" data-path='/{{table}}/{{$parent.data[0].id}}'
+                            data-table='{{table}}' data-row={{$parent.data[0].id}}>Cancel</button>
 
-                    <button type="button" class="btn" @click="click" data-path='/{{table}}/{{row}}' data-method='PUT'
-                            data-table='{{table}}' data-row={{row}} data-mode=''>Save</button>
+                    <button type="button" class="btn btn-primary" @click="click" data-path='/{{table}}/{{$parent.data[0].id}}' data-method='PUT'
+                            data-table='{{table}}' data-row={{$parent.data[0].id}}>Save</button>
                 </div>
             </div>
 
@@ -24,11 +24,19 @@
         <template v-if="$parent.table && !$parent.row">
 
             <table class="table">
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th class="text-right">Actions</th>
-                    </tr>
+                <tr>
+                    <td>Table name:</td>
+                    <td>
+                        <input class="form-control" name="{{$parent.data[0].tablename}}" v-model="$parent.data[0].tablename">
+                        <input class="hidden" name="{{$parent.data[0].originalTablename}}" v-model="$parent.data[0].originalTablename"></div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th class="text-right">Actions</th>
+                </tr>
                 <tr v-for="(index, column) in $parent.data[0].columns">
                     <template v-if="!column.fresh">
                         <td>
@@ -39,7 +47,6 @@
                             <select name="{{column.type}}" v-model="column.type" class="form-control" :disabled="column.originalName=='id'">
                                 <option v-for="type in types" value="{{type}}" :selected="type==column.type">{{type}}</option>
                             </select>
-                            <!--div class="col-sm-10"><input class="form-control" name="{{column.type}}" v-model="column.type"></div-->
                             <input class="hidden" name="{{column.originalType}}" v-model="column.originalType"></div>
                         </td>
                         <td>
