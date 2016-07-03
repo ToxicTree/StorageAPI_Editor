@@ -38,6 +38,10 @@
         <tr>
             <td colspan="{{$parent.data[0].columns.length+1}}">
                 <button @click="click" type="button" class="btn pull-right" data-path='/{{table}}'
+                        data-table='{{table}}' data-mode='edit'>Edit</button>
+                <button @click="click" type="button" class="btn pull-right" data-path='/{{table}}'
+                        data-method='DELETE'>Kill</button>
+                <button @click="click" type="button" class="btn pull-right" data-path='/{{table}}'
                         data-table='{{table}}' data-row='0' data-method='post' data-mode='edit'>New</button>
             </td>
         </tr>
@@ -48,6 +52,15 @@
         <tr v-for="(index, value) in $parent.data[0]">
             <td>{{index}}</td>
             <td>{{value}}</td>
+        </tr>
+        <tr>
+            <td>Tools:</td>
+            <td>
+                <button @click="click" type="button" class="btn" data-path='/{{table}}/{{row}}'
+                        data-table='{{table}}' data-row='{{row}}' data-mode='edit'>Edit</button>
+                <button @click="click" type="button" class="btn" data-path='/{{table}}/{{row}}'
+                        data-table='{{table}}' data-method='DELETE'>Kill</button>
+            </td>
         </tr>
     </table>
 
