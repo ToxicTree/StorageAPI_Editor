@@ -2,11 +2,11 @@
 
     <status></status>
 
-    <api-nav></api-nav>
+    <api-nav :table="table" :row="row" :edit-mode="editMode" :click="click"></api-nav>
 
-    <view :table="table" :row="row" v-if="!loading && !editMode"></view>
+    <view :table="table" :row="row" :click="click" v-if="!loading && !editMode"></view>
 
-    <editor :table="table" :row="row" v-if="!loading && editMode"></editor>
+    <editor :table="table" :row="row" :click="click" v-if="!loading && editMode"></editor>
 
 </template>
 
@@ -38,7 +38,19 @@
 
         methods: {
 
-            navigate(apiPath, apiMethod, editMode, table, row) {
+            click(e){
+
+                this.navigate(
+                    e.target.getAttribute('data-method'),
+                    e.target.getAttribute('data-path'),
+                    e.target.getAttribute('data-table'),
+                    e.target.getAttribute('data-row'),
+                    e.target.getAttribute('data-mode')
+                );
+
+            },
+
+            navigate(apiMethod, apiPath, table, row, editMode) {
                 
                 if (!apiPath)
                     return;
@@ -98,12 +110,8 @@
         },
 
         ready(){
-            this.navigate( this.apiPath );
+            this.navigate( 'GET', this.apiPath );
         }
 
     }
 </script>
-
-<style>
-
-</style>
