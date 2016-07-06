@@ -2,11 +2,11 @@
 
     <status></status>
 
-    <api-nav :table="table" :row="row" :edit-mode="editMode" :click="click"></api-nav>
+    <api-nav :table="table" :row="row" :edit-mode="editMode" :navigate="navigate"></api-nav>
 
-    <view :table="table" :row="row" :click="click" v-if="!loading && !editMode"></view>
+    <view :table="table" :row="row" :navigate="navigate" v-if="!loading && !editMode && buffer.length<10" :buffer="buffer"></view>
 
-    <editor :table="table" :row="row" :click="click" v-if="!loading && editMode"></editor>
+    <editor :table="table" :row="row" :navigate="navigate" v-if="!loading && editMode && buffer.length<10" :buffer="buffer"></editor>
 
 </template>
 
@@ -18,11 +18,13 @@
 
     export default {
 
+        name: 'SqliteEditor',
+
         components: { Status, ApiNav, Editor, View },
 
-        data() {
+        data: function() {
             return {
-                data: '',
+                buffer: '',
                 loading: false,
 
                 editMode: '',
@@ -38,55 +40,62 @@
 
         methods: {
 
-            click(e){
-
-                this.navigate(
-                    e.target.getAttribute('data-method'),
-                    e.target.getAttribute('data-path'),
-                    e.target.getAttribute('data-table'),
-                    e.target.getAttribute('data-row'),
-                    e.target.getAttribute('data-mode')
-                );
-
-            },
-
-            navigate(apiMethod, apiPath, table, row, editMode) {
+            navigate(e) {
                 
-                if (!apiPath)
-                    return;
+                if (e && e.target) {
 
-                this.apiPath = apiPath;
+                    this.apiPath = e.target.getAttribute('data-path') || '/';
 
-                this.apiMethod = (apiMethod) ? apiMethod : 'GET';
+                    this.apiMethod = e.target.getAttribute('data-method') || 'GET';
 
-                this.editMode = (editMode) ? editMode : '';
+                    this.editMode = e.target.getAttribute('data-mode') || '';
 
-                this.table = table;
+                    this.table = e.target.getAttribute('data-table') || '';
 
-                this.row = row;
+                    this.row = e.target.getAttribute('data-row') || 0;
 
-                this.ajax(this.handleResponse,this.data[0]);
+                }
 
-                this.$broadcast('nav-update', apiPath, table, row);
+                if (this.apiMethod != 'GET')
+                    this.ajax(this.buffer[0]);
+
+                else
+                    this.ajax();
 
             },
 
-            handleResponse(data){
+            handleResponse(response) {
 
-                this.data = data;
+                this.buffer = response;
 
-                this.$broadcast('refresh-contents');
+                if (this.apiMethod == 'POST' || this.apiMethod == 'PUT'){
+                    this.table = this.buffer[0].tablename || this.table;
+                    this.row = this.buffer[0].id || 0;
+                }
 
                 this.loading = false;
 
             },
 
-            ajax(cb,data){
+            handleError() {
+
+                if (this.apiMethod == 'PUT'){
+                    this.editMode = 'edit';
+                    this.table = this.buffer[0].tablename || this.table;
+                    this.row = this.buffer[0].id || 0;
+                }
+
+                this.loading = false;
+
+            },
+
+            ajax(data) {
 
                 var self = this;
                 
                 // Make a request
                 self.$broadcast('status-update', "Connecting to storage @ '"+self.apiDomain+"' ...");
+                self.$broadcast('state-update', 'waiting');
                 self.loading = true;
                 
                 $.ajax({
@@ -97,11 +106,12 @@
                     success: function(response,status,xhr){
                         self.$broadcast('state-update', 'success');
                         self.$broadcast('status-update', "Got response from '"+self.apiDomain+"'. "+xhr.status+" "+xhr.statusText);
-                        cb(response);
+                        self.handleResponse(response);
                     },
                     error: function(response,status,code){
                         self.$broadcast('state-update', 'danger');
                         self.$broadcast('status-update', "Error from '"+self.apiDomain+"'. "+code);
+                        self.handleError();
                     }
                 });
 
@@ -109,8 +119,8 @@
 
         },
 
-        ready(){
-            this.navigate( 'GET', this.apiPath );
+        ready: function() {
+            this.navigate();
         }
 
     }
