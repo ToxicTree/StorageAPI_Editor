@@ -4,7 +4,7 @@
 
         <template v-if="table && row">
 
-            <div v-for="(index, value) in $parent.data[0]" class="form-group">
+            <div v-for="(index, value) in buffer[0]" class="form-group">
                 <label class="col-sm-offset-2 col-sm-2 control-label" for="{{index}}">
                     {{index}}
                 </label>
@@ -12,13 +12,13 @@
                     <input class="form-control" name="{{index}}" v-model="value" :disabled="index=='id'">
                 </div>
             </div>
-            <div class="form-group" v-if="$parent.data[0].id">
+            <div class="form-group" v-if="buffer[0].id">
                 <div class="col-sm-offset-4 col-sm-5">
                     <div class="btn-group">
-                        <button @click="click" type="button" class="btn btn-default" data-path='/{{table}}/{{$parent.data[0].id}}'
-                                data-table='{{table}}' data-row={{$parent.data[0].id}}>Cancel</button>
-                        <button @click="click" type="button" class="btn btn-primary" data-path='/{{table}}/{{$parent.data[0].id}}'
-                                data-table='{{table}}' data-row={{$parent.data[0].id}} data-method='PUT'>Save</button>
+                        <button @click="navigate" type="button" class="btn btn-default" data-path='/{{table}}/{{buffer[0].id}}'
+                                data-table='{{table}}' data-row={{buffer[0].id}}>Cancel</button>
+                        <button @click="navigate" type="button" class="btn btn-primary" data-path='/{{table}}/{{buffer[0].id}}'
+                                data-table='{{table}}' data-row={{buffer[0].id}} data-method='PUT'>Save</button>
                     </div>
                 </div>
             </div>
@@ -32,8 +32,8 @@
                     Tablename
                 </label>
                 <div class="col-sm-5">
-                    <input class="form-control" name="{{$parent.data[0].tablename}}" v-model="$parent.data[0].tablename">
-                    <input class="hidden" name="{{$parent.data[0].originalTablename}}" v-model="$parent.data[0].originalTablename"></div>
+                    <input class="form-control" name="{{buffer[0].tablename}}" v-model="buffer[0].tablename">
+                    <input class="hidden" name="{{buffer[0].originalTablename}}" v-model="buffer[0].originalTablename"></div>
                 </div>
             </div>
             <div class="form-group">
@@ -41,7 +41,7 @@
                     Columns
                 </label>
                 <div class="col-sm-6">
-                    <div v-for="(index, column) in $parent.data[0].columns" class="form-group">
+                    <div v-for="(index, column) in buffer[0].columns" class="form-group">
                         <template v-if="!column.fresh">
                             <div class="col-sm-5">
                                 <input class="form-control" name="{{column.name}}" v-model="column.name" :disabled="column.originalName=='id'">
@@ -79,9 +79,9 @@
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-5">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default" @click="click" data-path='/{{table}}'
+                        <button type="button" class="btn btn-default" @click="navigate" data-path='/{{table}}'
                                 data-table='{{table}}' data-mode=''>Cancel</button>
-                        <button type="button" class="btn btn-primary" @click="click" data-path='/{{table}}' data-method='PUT'
+                        <button type="button" class="btn btn-primary" @click="navigate" data-path='/{{table}}' data-method='PUT'
                                 data-table='{{table}}' data-mode=''>Save</button>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
 
         name: 'Editor',
         
-        props: [ 'table', 'row', 'click' ],
+        props: [ 'table', 'row', 'navigate', 'buffer' ],
 
         data: function(){
             return {
@@ -110,13 +110,13 @@
 
             remove(i){
 
-                this.$parent.data[0].columns.splice(i,1);
+                this.buffer[0].columns.splice(i,1);
 
             },
 
             add(){
 
-                this.$parent.data[0].columns.push({fresh:true});
+                this.buffer[0].columns.push({fresh:true});
 
             }
 

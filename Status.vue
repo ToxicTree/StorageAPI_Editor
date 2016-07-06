@@ -1,7 +1,7 @@
 <template>
 
-    <div class="SqliteEditor__status">
-        <samp class="{{ (state) ? 'bg-'+state : '--fade' }}">{{ status }}</samp>
+    <div class="text-right">
+        <samp class=" {{ (state) ? 'bg-'+state : 'fade' }}">{{ status }}</samp>
     </div>
 
 </template>
@@ -31,7 +31,8 @@
                 if (this.fade)
                     clearTimeout(this.fade);
 
-                this.fade = setTimeout(clear_state, 2000 );
+                if (state=='success')
+                    this.fade = setTimeout(clear_state, 2000 );
 
             },
 
@@ -45,13 +46,3 @@
 
     }
 </script>
-
-<style>
-    .SqliteEditor__status {
-        text-align: right;
-    }
-
-    .--fade {
-        transition: all 1s ease-out;
-    }
-</style>
