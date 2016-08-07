@@ -56,7 +56,7 @@
 
                 }
 
-                if (this.apiMethod != 'GET')
+                if (this.apiMethod == 'POST' || this.apiMethod == 'PUT')
                     this.ajax(this.buffer[0]);
 
                 else
