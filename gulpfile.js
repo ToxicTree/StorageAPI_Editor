@@ -9,6 +9,6 @@ var elixir = require('laravel-elixir');
 elixir(function(mix){
 
         mix
-            .browserify('./index.js','./builds/StorageAPI_Editor.js');
+            .browserify('./src/index.js','./builds/StorageAPI_Editor.js');
 
 })
