@@ -96,7 +96,6 @@
                         <div class="btn-group pull-right">
                             <button @click="navigate" type="button" class="btn btn-default" data-path='/'
                                 data-method='POST' data-mode='edit'>New Table</button>
-                            <button @click="navigate" type="button" class="btn btn-default" data-path='/yy/ii/uu'>Error</button>
                         </div>
                     </td>
                 </tr>

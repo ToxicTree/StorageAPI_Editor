@@ -1,13 +1,15 @@
 <template>
+    <div>
+    
+        <status></status>
 
-    <status></status>
+        <api-nav :table="table" :row="row" :edit-mode="editMode" :navigate="navigate"></api-nav>
 
-    <api-nav :table="table" :row="row" :edit-mode="editMode" :navigate="navigate"></api-nav>
+        <view :table="table" :row="row" :navigate="navigate" v-if="!loading && !editMode && buffer.length<10" :buffer="buffer"></view>
 
-    <view :table="table" :row="row" :navigate="navigate" v-if="!loading && !editMode && buffer.length<10" :buffer="buffer"></view>
-
-    <editor :table="table" :row="row" :navigate="navigate" v-if="!loading && editMode && buffer.length<10" :buffer="buffer"></editor>
-
+        <editor :table="table" :row="row" :navigate="navigate" v-if="!loading && editMode && buffer.length<10" :buffer="buffer"></editor>
+        
+    </div>
 </template>
 
 <script>
@@ -19,6 +21,8 @@
     export default {
 
         name: 'SqliteEditor',
+
+        el() { return '#storageapieditor' },
 
         components: { Status, ApiNav, Editor, View },
 
