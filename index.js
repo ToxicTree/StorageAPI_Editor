@@ -1,2 +1,2 @@
-import EditorModule from './src/Index.vue'
-module.exports = EditorModule
+// Export a build when requesting this module
+module.exports = require('./builds/StorageAPI_Editor.js');

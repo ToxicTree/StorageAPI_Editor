@@ -1,6 +1,6 @@
 <template>
     <div>
-    
+
         <status></status>
 
         <api-nav :table="table" :row="row" :edit-mode="editMode" :navigate="navigate"></api-nav>
@@ -20,9 +20,7 @@
 
     export default {
 
-        name: 'SqliteEditor',
-
-        el() { return '#storageapieditor' },
+        name: 'StorageAPI_Editor',
 
         components: { Status, ApiNav, Editor, View },
 

@@ -2,53 +2,39 @@
 Editor for [StorageAPI](https://github.com/ToxicTree/StorageAPI)
 
 #### About
-Experimental vue component & node-module.
-
-#### Install to folder
-    git clone https://github.com/ToxicTree/StorageAPI_Editor.git
-    cd StorageAPI_Editor
-    npm install
+Experimental Vue-component & node-module.
 
 #### Install to project
-    npm install storageapi-editor --save
-   
-#### Use
-    var Editor = require('../StorageAPI_Editor') // From cloned repo folder
+    $ npm install storageapi-editor --save
+
+#### Use (Register global component with pre-built bundle)
+    // Get dependencies
+    window.$ = require('jquery');
+    window.Vue = require('vue');
     
-    var Editor = require('storageapi-editor') // From installed npm-package
-    
+    // Require component from installed npm-package (this will register it)
+    require('storageapi-editor');
+
+    // You can then use the component in any Vue-instance
     new Vue({
-        ...
-        components: { ..., Editor, ... },
-        ...
+        el: '#app',
+        template: "<div><storageapi_editor></storageapi_editor></div>"
     })
 
-#### Include in VueInterface/components.json
-    exports.Editor = require('storageapi-editor')
+#### Use (Require component directly and build together with your app)
+    new Vue({
+        ...
+        components: {
+            ...
+            'editor' : require('storageapi-editor/src/Index.vue'),
+            ...
+        },
+        ...
+        template: "<editor></editor>",
+        ...
+    });
 
-#### Problems?
-I was having alot of problems when trying to require this from node_modules and from repo-folder using the same browserify-setup.
-    
-If you are using gulp, browserify & laravel-elixir to bundle your project:
-    
-make sure that you don´t require laravel-elixir-vueify in your .gulpfile and add vueify to your package.json instead:
-    
-    "dependencies": {
-        "gulp": "^3.9.1",
-        "laravel-elixir": "5.0.0",
-        "laravel-elixir-vueify": "^1.0.3",
-        "storageapi-editor": "^1.0.0"
-    },
-    "browserify": {
-        "transform": [
-            [
-                "babelify", { "presets": ["es2015"] }
-            ],
-            [
-                "vueify",
-                {}
-            ]
-        ]
-    }
 
-See [VueInterface](https://github.com/ToxicTree/VueInterface) for a example.
+#### Include component in [VueInterface](https://github.com/ToxicTree/VueInterface)
+    //components.json
+    exports.storageapi_editor = require('storageapi-editor/src/Index.vue')
