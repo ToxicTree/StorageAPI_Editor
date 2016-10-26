@@ -5,3 +5,52 @@
 // FA-icons
 $fa-font-path:"../dist";
 @import "node_modules/font-awesome/scss/font-awesome";
+
+// Editor
+#editor {
+
+    // The last td is for tools
+    td:last-child{
+        width: 1px;
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    // Table tools with icons
+    a.table_edit, button.table_edit {
+        @extend .btn, .btn-sm, .btn-default, .fa, .fa-edit;
+    }
+    a.table_delete, button.table_delete {
+        @extend .btn, .btn-sm, .btn-default, .fa, .fa-remove;
+    }
+    a.table_delete:hover, button.table_delete:hover {
+        @extend .btn-danger;
+    }
+    a.table_new, button.table_new {
+        @extend .btn, .btn-sm, .btn-default, .fa, .fa-plus;
+    }
+    a.table_new:hover, button.table_new:hover {
+        @extend .btn-primary;
+    }
+
+    // Form actions
+    a.form_cancel, button.form_cancel {
+        @extend .btn, .btn-sm, .btn-default;
+    }
+    a.form_edit, button.form_edit {
+        @extend .btn, .btn-sm, .btn-default;
+    }
+    a.form_delete, button.form_delete {
+        @extend .btn, .btn-sm, .btn-default;
+    }
+    a.form_delete:hover, button.form_delete:hover {
+        @extend .btn-danger;
+    }
+    a.form_save, button.form_save {
+        @extend .btn, .btn-sm, .btn-default;
+    }
+    a.form_save:hover, button.form_save:hover {
+        @extend .btn-primary;
+    }
+
+}

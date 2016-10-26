@@ -1,5 +1,5 @@
 <template>
-    <div v-if="buffer">
+    <div id="editor" v-if="buffer">
 
         <database-editor v-if="table=='' && row==0"
             :mode="mode"
