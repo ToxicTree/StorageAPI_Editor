@@ -9,6 +9,8 @@
     "copy-fonts": "cpx \"node_modules/font-awesome/fonts/*.*\" \"dist/\"",
     "build-css": "node-sass src/main.scss dist/build.css",
     "build-js": "cross-env NODE_ENV=production browserify -g envify -e src/main.js -o dist/build.js",
+    "watch": "npm-run-all --parallel watch-css watch-js copy-fonts",
+    "build": "npm-run-all --parallel build-css build-js copy-fonts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -41,6 +43,7 @@
     "envify": "^3.4.1",
     "font-awesome": "^4.7.0",
     "node-sass": "^3.10.1",
+    "npm-run-all": "^3.1.1",
     "vueify": "^9.2.4",
     "watchify": "^3.7.0"
   }
