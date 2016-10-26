@@ -18,26 +18,5 @@
   "homepage": "https://github.com/ToxicTree/StorageAPI_Editor#readme",
   "dependencies": {
     "vue": "1.0.*"
-  },
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "presets": [
-            "es2015"
-          ]
-        }
-      ],
-      [
-        "vueify",
-        {}
-      ]
-    ]
-  },
-  "devDependencies": {
-    "laravel-elixir-vueify": "^1.0.3",
-    "laravel-elixir": "5.0.0",
-    "gulp": "^3.9.1"
   }
 }
