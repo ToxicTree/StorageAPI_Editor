@@ -1,10 +1,8 @@
-# StorageAPI_Editor
+# StorageAPI_Editor <a href="https://www.npmjs.com/package/storageapi-editor"><img src="https://img.shields.io/npm/v/storageapi-editor.svg" alt="Version"></a>
 Editor for [StorageAPI](https://github.com/ToxicTree/StorageAPI)
 
 #### About
 Experimental Vue-component & node-module.
-
-Refactoring in progress! (migration to Vue 2.0)
 
 ## Build
 ``` bash
