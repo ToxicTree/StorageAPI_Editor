@@ -58,8 +58,8 @@
             </tbody>
         </table>
 
-        <div v-if="table">
-            <div class="form-group">
+        <template v-if="table">
+            <div class="form-group row">
                 <label class="col-sm-offset-2 col-sm-2 control-label"
                     :for="table.tablename">
                     Tablename
@@ -74,12 +74,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group row">
                 <label class="col-sm-offset-2 col-sm-2 control-label">
                     Columns
                 </label>
                 <div class="col-sm-6">
-                    <div v-for="(column, index) in table.columns" class="form-group">
+                    <div v-for="(column, index) in table.columns" class="form-group row">
                         <template v-if="!column.fresh">
                             <div class="col-sm-5">
                                 <input class="form-control" :name="column.name" v-model="column.name" :disabled="column.originalName=='id'">
@@ -107,7 +107,7 @@
                             <button type="button" class="table_delete" @click="removeColumn(index)"></button>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group row">
                         <div class="col-sm-offset-10 col-sm-2">
                             <button type="button" class="table_new" @click="addColumn"></button>
                         </div>
@@ -115,7 +115,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-sm-offset-4 col-sm-5">
                     <div class="btn-group">
                         <button type="button" class="form_cancel" @click="nav({
@@ -129,7 +129,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+
+        </template>
 
     </div>
 </template>

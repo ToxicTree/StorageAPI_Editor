@@ -1,7 +1,7 @@
 <template>
     <div v-if="row">
 
-        <div v-for="(value, index) in row" class="form-group">
+        <div v-for="(value, index) in row" class="form-group row">
             <label class="col-sm-offset-2 col-sm-2 control-label"
                 :for="index">
                 {{index}}
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group row">
             <div class="col-sm-offset-4 col-sm-5">
                 <div class="btn-group" v-if="mode=='edit'">
                     <button type="button" class="form_cancel" @click="nav({
