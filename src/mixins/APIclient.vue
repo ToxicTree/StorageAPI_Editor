@@ -13,7 +13,7 @@
                 this.loading = false;
             },
             handleError(response) {
-                bus.$emit('state', "danger" );
+                bus.$emit('state', "error" );
                 bus.$emit('status',
                     "Error from '"+STORAGEAPI_DOMAIN+"'. "
                     +response.code

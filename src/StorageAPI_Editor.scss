@@ -1,0 +1,87 @@
+// StorageAPI_Editor
+#storageapi-editor {
+
+    // Status
+    #status {
+        text-align: right;
+
+        .success {
+            @extend .bg-success !optional;
+        }
+        .error {
+            @extend .bg-danger !optional;
+        }
+        .off {
+            @extend .fade !optional;
+        }
+    }
+
+    // Navigation
+    #nav {
+        @extend .breadcrumb !optional;
+
+        li:last-child {
+            @extend .pull-right !optional;
+        }
+    }
+
+    // Editor
+    #editor {
+
+        // The last td is for tools
+        td:last-child {
+            width: 1px;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        // Table tools (Bootstrap)
+        a.table_edit, button.table_edit {
+            @extend .btn, .btn-sm, .btn-default !optional;
+        }
+        a.table_delete, button.table_delete {
+            @extend .btn, .btn-sm, .btn-default !optional;
+        }
+        a.table_delete:hover, button.table_delete:hover {
+            @extend .btn-danger !optional;
+        }
+        a.table_new, button.table_new {
+            @extend .btn, .btn-sm, .btn-default !optional;
+        }
+        a.table_new:hover, button.table_new:hover {
+            @extend .btn-primary !optional;
+        }
+
+        // Table tools (FA icons)
+        a.table_edit, button.table_edit {
+            @extend .fa, .fa-edit !optional;
+        }
+        a.table_delete, button.table_delete {
+            @extend .fa, .fa-remove !optional;
+        }
+        a.table_new, button.table_new {
+            @extend .fa, .fa-plus !optional;
+        }
+
+        // Form actions (Bootstrap)
+        a.form_cancel, button.form_cancel {
+            @extend .btn, .btn-sm, .btn-default !optional;
+        }
+        a.form_edit, button.form_edit {
+            @extend .btn, .btn-sm, .btn-default !optional;
+        }
+        a.form_delete, button.form_delete {
+            @extend .btn, .btn-sm, .btn-default !optional;
+        }
+        a.form_delete:hover, button.form_delete:hover {
+            @extend .btn-danger !optional;
+        }
+        a.form_save, button.form_save {
+            @extend .btn, .btn-sm, .btn-default !optional;
+        }
+        a.form_save:hover, button.form_save:hover {
+            @extend .btn-primary !optional;
+        }
+
+    }
+}

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="storageapi-editor">
         <status></status>
         <navigation
             :mode="mode"
@@ -51,3 +51,16 @@
         }
     }
 </script>
+
+<style>
+    /* Table tools (Fallback Text) */
+    .table_edit:before {
+        content: 'Edit';
+    }
+    .table_delete:before {
+        content: 'Delete';
+    }
+    .table_new:before {
+        content: 'New';
+    }
+</style>

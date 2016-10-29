@@ -1,5 +1,5 @@
 <template>
-    <ol class="breadcrumb" id="apiNav">
+    <ol id="nav">
 
         <li v-if="table || mode=='edit'">
             <a role="button" @click.prevent="navigate">Root</a>
@@ -28,7 +28,7 @@
 
         <li v-if="mode=='edit'">Edit</li>
 
-        <li class="pull-right">
+        <li>
             <a role="button" @click.prevent="navigate({
                 path: '/' + ((table) ? table : '') + ((row) ? '/'+row : '')
             })">Reload</a>

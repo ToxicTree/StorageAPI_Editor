@@ -1,6 +1,6 @@
 <template>
-    <div class="text-right">
-        <samp :class="(!hidden) ? 'bg-'+state : 'fade'">{{ status }}</samp>
+    <div id="status">
+        <samp :class="(!hidden) ? state : 'off'">{{ status }}</samp>
     </div>
 </template>
 
