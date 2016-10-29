@@ -4,7 +4,26 @@ Editor for [StorageAPI](https://github.com/ToxicTree/StorageAPI)
 #### About
 Experimental Vue-component & node-module.
 
-## Build
+## Install or clone
+``` bash
+# Install with npm to your project
+npm install storageapi-editor
+
+# Clone with git
+git clone https://github.com/ToxicTree/StorageAPI_Editor.git
+```
+
+## Use in project
+``` js
+// Require component
+var editor_component = require('storageapi-editor');
+```
+``` scss
+// Import in .scss file
+@import "node_modules/storageapi-editor/src/StorageAPI_Editor";
+```
+
+## Build in cloned repository
 ``` bash
 # install dependencies
 npm install
