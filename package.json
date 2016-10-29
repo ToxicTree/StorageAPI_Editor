@@ -1,6 +1,6 @@
 {
   "name": "storageapi-editor",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Editor for StorageAPI",
   "main": "src/module.js",
   "scripts": {
