@@ -3,7 +3,8 @@
 // Check dependencies
 if (!window.Vue)
     window.Vue = require('vue');
-require('vue-resource');
+if (!window.Vue.http)
+    require('vue-resource');
 
 // Get the editor
 const StorageAPI_Editor = require('./StorageAPI_Editor.vue');
