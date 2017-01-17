@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    export default {
+    module.exports = {
         name: 'Navigation',
         props: [ 'mode', 'table', 'row' ],
         methods: {

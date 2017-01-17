@@ -44,7 +44,7 @@
 </template>
 
 <script>
-    export default {
+    module.exports = {
         name: 'DatabaseEditor',
         props: [ 'buffer', 'mode' ],
         methods: {

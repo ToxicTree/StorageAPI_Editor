@@ -1,5 +1,5 @@
 <script>
-    export default {
+    module.exports = {
         name: 'APIclient',
         methods: {
             handleSuccess(response) {

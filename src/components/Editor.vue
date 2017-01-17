@@ -21,13 +21,13 @@
 </template>
 
 <script>
-    import DatabaseEditor from './editor/DatabaseEditor.vue';
-    import TableEditor from './editor/TableEditor.vue';
-    import RowEditor from './editor/RowEditor.vue';
-
-    export default {
+    module.exports = {
         name: 'Editor',
         props: [ 'buffer', 'mode', 'table', 'row' ],
-        components: { DatabaseEditor, TableEditor, RowEditor }
+        components: {
+            'DatabaseEditor' : require('./editor/DatabaseEditor.vue'),
+            'TableEditor' : require('./editor/TableEditor.vue'),
+            'RowEditor' : require('./editor/RowEditor.vue'),
+        }
     }
 </script>

@@ -136,7 +136,7 @@
 </template>
 
 <script>
-    export default {
+    module.exports = {
         name: 'TableEditor',
         props: [ 'buffer', 'mode' ],
         data(){ return { table: false, types: [ 'INTEGER', 'TEXT' ] } },

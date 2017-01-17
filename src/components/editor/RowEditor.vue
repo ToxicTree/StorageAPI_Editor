@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    export default {
+    module.exports = {
         name: 'RowEditor',
         props: [ 'buffer', 'mode', 'table' ],
         data() { return { row: false } },
