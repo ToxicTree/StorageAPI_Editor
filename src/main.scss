@@ -3,8 +3,8 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 // FA-icons
-$fa-font-path:"../dist" !default; // Define path for fonts if not set
-@import "node_modules/font-awesome/scss/font-awesome";
+//$fa-font-path:"../dist" !default; // Define path for fonts if not set
+//@import "node_modules/font-awesome/scss/font-awesome";
 
 // Editor
 @import "./StorageAPI_Editor";

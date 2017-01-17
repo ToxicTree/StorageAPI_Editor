@@ -9,8 +9,8 @@
     "copy-fonts": "cpx \"node_modules/font-awesome/fonts/*.*\" \"dist/\"",
     "build-css": "node-sass src/main.scss dist/build.css",
     "build-js": "cross-env NODE_ENV=production browserify -g envify -e src/main.js -o dist/build.js",
-    "watch": "npm-run-all --parallel watch-css watch-js copy-fonts",
-    "build": "npm-run-all --parallel build-css build-js copy-fonts",
+    "watch": "npm-run-all --parallel watch-css watch-js",
+    "build": "npm-run-all --parallel build-css build-js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.16.0",
     "bootstrap-sass": "^3.3.7",
     "browserify": "^13.1.0",
