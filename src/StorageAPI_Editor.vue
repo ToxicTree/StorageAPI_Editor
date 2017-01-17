@@ -17,23 +17,20 @@
 
 <script>
     // Instantiate a central event-handler
-    window.bus = new Vue({ name: 'EventHandler' });
-
-    // APIclient mixin
-    import APIclient from './mixins/APIclient.vue'
-
-    // Components
-    import Status from './components/Status.vue'
-    import Navigation from './components/Navigation.vue'
-    import Editor from './components/Editor.vue'
+    if (!window.bus)
+        window.bus = new Vue({ name: 'EventHandler' });
 
     // Configuration
     window.STORAGEAPI_DOMAIN = 'http://StorageAPI.dev';
 
-    export default {
+    module.exports = {
         name: 'StorageAPI_Editor',
-        components: { Status, Navigation, Editor },
-        mixins: [ APIclient ],
+        components: {
+            'Status': require('./components/Status.vue'),
+            'Navigation': require('./components/Navigation.vue'),
+            'Editor': require('./components/Editor.vue')
+        },
+        mixins: [ require('./mixins/APIclient.vue') ],
         data: function() {
             return {
                 buffer: [],
@@ -48,6 +45,12 @@
             bus.$on('mode', (mode) => this.mode = mode );
             bus.$on('table', (table) => this.table = table );
             bus.$on('row', (row) => this.row = row );
+        },
+        destroyed: function() {
+            bus.$off('buffer');
+            bus.$off('mode');
+            bus.$off('table');
+            bus.$off('row');
         }
     }
 </script>
