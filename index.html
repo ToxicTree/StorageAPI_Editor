@@ -3,10 +3,22 @@
     <head>
         <title>:: StorageAPI_Editor ::</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="dist/build.css">
     </head>
     <body role="document">
         <div id="app"></div>
-        <script src="dist/build.js?"></script>
+        <script>
+            /* This will load a fresh version of the App */
+            (function loadScript() {
+                var d = new Date();
+                var t = d.getTime();
+                var css = document.createElement('link')
+                css.href = "dist/build.css?t=" + t;
+                css.rel = "stylesheet"
+                document.head.appendChild(css);
+                var js = document.createElement('script')
+                js.src = "dist/build.js?t=" + t;
+                document.body.appendChild(js);
+            })()
+        </script>
     </body>
 </html>
